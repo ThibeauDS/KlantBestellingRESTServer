@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "KlantBestellingRESTServer.Data/1.0.0": {
+        "dependencies": {
+          "KlantBestellingRESTServer.Domein": "1.0.0"
+        },
+        "runtime": {
+          "KlantBestellingRESTServer.Data.dll": {}
+        }
+      },
+      "KlantBestellingRESTServer.Domein/1.0.0": {
+        "runtime": {
+          "KlantBestellingRESTServer.Domein.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "KlantBestellingRESTServer.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "KlantBestellingRESTServer.Domein/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
