@@ -33,11 +33,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thibe\\source\\repos\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Data\\KlantBestellingRESTServer.Data.csproj",
+      "projectUniqueName": "C:\\Users\\thibe\\Documents\\GitHub\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Data\\KlantBestellingRESTServer.Data.csproj",
       "projectName": "KlantBestellingRESTServer.Data",
-      "projectPath": "C:\\Users\\thibe\\source\\repos\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Data\\KlantBestellingRESTServer.Data.csproj",
+      "projectPath": "C:\\Users\\thibe\\Documents\\GitHub\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Data\\KlantBestellingRESTServer.Data.csproj",
       "packagesPath": "C:\\Users\\thibe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thibe\\source\\repos\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Data\\obj\\",
+      "outputPath": "C:\\Users\\thibe\\Documents\\GitHub\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -58,8 +58,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\thibe\\source\\repos\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Domein\\KlantBestellingRESTServer.Domein.csproj": {
-              "projectPath": "C:\\Users\\thibe\\source\\repos\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Domein\\KlantBestellingRESTServer.Domein.csproj"
+            "C:\\Users\\thibe\\Documents\\GitHub\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Domein\\KlantBestellingRESTServer.Domein.csproj": {
+              "projectPath": "C:\\Users\\thibe\\Documents\\GitHub\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Domein\\KlantBestellingRESTServer.Domein.csproj"
             }
           }
         }
@@ -88,7 +88,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-rc.1.21463.6\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-rc.2.21505.57\\RuntimeIdentifierGraph.json"
       }
     }
   }

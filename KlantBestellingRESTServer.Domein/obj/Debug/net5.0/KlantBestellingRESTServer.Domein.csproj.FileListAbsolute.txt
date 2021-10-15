@@ -10,3 +10,15 @@ C:\Users\thibe\source\repos\KlantBestellingRESTServer\KlantBestellingRESTServer.
 C:\Users\thibe\source\repos\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\KlantBestellingRESTServer.Domein.dll
 C:\Users\thibe\source\repos\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\ref\KlantBestellingRESTServer.Domein.dll
 C:\Users\thibe\source\repos\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\KlantBestellingRESTServer.Domein.pdb
+C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\bin\Debug\net5.0\KlantBestellingRESTServer.Domein.deps.json
+C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\bin\Debug\net5.0\KlantBestellingRESTServer.Domein.dll
+C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\bin\Debug\net5.0\ref\KlantBestellingRESTServer.Domein.dll
+C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\bin\Debug\net5.0\KlantBestellingRESTServer.Domein.pdb
+C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\KlantBestellingRESTServer.Domein.csproj.AssemblyReference.cache
+C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\KlantBestellingRESTServer.Domein.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\KlantBestellingRESTServer.Domein.AssemblyInfoInputs.cache
+C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\KlantBestellingRESTServer.Domein.AssemblyInfo.cs
+C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\KlantBestellingRESTServer.Domein.csproj.CoreCompileInputs.cache
+C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\KlantBestellingRESTServer.Domein.dll
+C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\ref\KlantBestellingRESTServer.Domein.dll
+C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\KlantBestellingRESTServer.Domein.pdb

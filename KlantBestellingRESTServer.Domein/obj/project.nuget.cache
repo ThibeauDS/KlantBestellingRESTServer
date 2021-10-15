@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HRgBaZT7YdlAkFCawRVdfkbM2Erz8OHDcfVqXoj//kay1tueL9CoFmEQyU6+9UsDAN9HzWf8IMMzVMG0KPJ0xQ==",
+  "dgSpecHash": "QeXZ+Pbt/ISfnFbQL5fACb/QVS3d+jta/Zqg2JVLwIMHcBZ05qvU8wlVMkWa/q9RNPo4PxdP7Eaa0LTmTqY9mg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\thibe\\source\\repos\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Domein\\KlantBestellingRESTServer.Domein.csproj",
+  "projectFilePath": "C:\\Users\\thibe\\Documents\\GitHub\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Domein\\KlantBestellingRESTServer.Domein.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

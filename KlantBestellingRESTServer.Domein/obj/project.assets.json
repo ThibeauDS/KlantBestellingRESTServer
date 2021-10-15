@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thibe\\source\\repos\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Domein\\KlantBestellingRESTServer.Domein.csproj",
+      "projectUniqueName": "C:\\Users\\thibe\\Documents\\GitHub\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Domein\\KlantBestellingRESTServer.Domein.csproj",
       "projectName": "KlantBestellingRESTServer.Domein",
-      "projectPath": "C:\\Users\\thibe\\source\\repos\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Domein\\KlantBestellingRESTServer.Domein.csproj",
+      "projectPath": "C:\\Users\\thibe\\Documents\\GitHub\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Domein\\KlantBestellingRESTServer.Domein.csproj",
       "packagesPath": "C:\\Users\\thibe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thibe\\source\\repos\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Domein\\obj\\",
+      "outputPath": "C:\\Users\\thibe\\Documents\\GitHub\\KlantBestellingRESTServer\\KlantBestellingRESTServer.Domein\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -65,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-rc.1.21463.6\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-rc.2.21505.57\\RuntimeIdentifierGraph.json"
       }
     }
   }

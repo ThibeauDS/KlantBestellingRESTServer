@@ -14,5 +14,6 @@ namespace KlantBestellingRESTServer.Domein.Interfaces
         void KlantVerwijderen(Klant klant);
         void KlantUpdaten(Klant klant);
         void KlantWeergeven(Klant klant);
+        //bool CheckHashCode(HashCode code);
     }
 }

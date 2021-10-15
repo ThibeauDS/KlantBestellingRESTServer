@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ee18ec4c-c8c4-43b8-a8e3-44e48a31feb7": {
+      "ProjectGuid": "ee18ec4c-c8c4-43b8-a8e3-44e48a31feb7",
+      "DisplayName": "KlantBestellingRESTServer.DomeinTests",
+      "ColorIndex": 0
+    },
+    "9b972553-07cc-4479-956c-c56a58b45da1": {
+      "ProjectGuid": "9b972553-07cc-4479-956c-c56a58b45da1",
+      "DisplayName": "KlantBestellingRESTServer.Domein",
+      "ColorIndex": 1
+    },
+    "cb7d3ea7-4c09-43a7-b352-f06ad6a663eb": {
+      "ProjectGuid": "cb7d3ea7-4c09-43a7-b352-f06ad6a663eb",
+      "DisplayName": "KlantBestellingRESTServer.Data",
+      "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 3
+}
