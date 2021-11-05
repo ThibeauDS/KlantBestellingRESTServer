@@ -22,20 +22,25 @@ namespace KlantBestellingRESTServer.Domein.Klassen
             ZetNaam(naam);
             ZetAdres(adres);
         }
+        public Klant(string naam, string adres)
+        {
+            ZetNaam(naam);
+            ZetAdres(adres);
+        }
         #endregion
 
         #region Methods
         public void ZetId(int id)
         {
-            if (id < 0)
+            if (id <= 0)
             {
-                throw new KlantException("Het ID is ongeldig. Het moet 0 of meer zijn.");
+                throw new KlantException("Het ID is ongeldig. Het moet 1 of meer zijn.");
             }
             Id = id;
         }
         public void ZetAdres(string adres)
         {
-            if (string.IsNullOrEmpty(adres) || string.IsNullOrWhiteSpace(adres))
+            if (string.IsNullOrWhiteSpace(adres))
             {
                 throw new KlantException("Het adres mag niet leeg zijn.");
             }
@@ -48,7 +53,7 @@ namespace KlantBestellingRESTServer.Domein.Klassen
 
         public void ZetNaam(string naam)
         {
-            if (string.IsNullOrEmpty(naam) || string.IsNullOrWhiteSpace(naam))
+            if (string.IsNullOrWhiteSpace(naam))
             {
                 throw new KlantException("De naam mag niet leeg zijn.");
             }
@@ -56,17 +61,17 @@ namespace KlantBestellingRESTServer.Domein.Klassen
         }
 
         //TODO: Repository kent deze nog niet en moet een check doen of er geen dubbele is
-        public override bool Equals(object obj)
-        {
-            return obj is Klant klant &&
-                   Naam == klant.Naam &&
-                   Adres == klant.Adres;
-        }
+        //public override bool Equals(object obj)
+        //{
+        //    return obj is Klant klant &&
+        //           Naam == klant.Naam &&
+        //           Adres == klant.Adres;
+        //}
 
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Naam, Adres);
-        }
+        //public override int GetHashCode()
+        //{
+        //    return HashCode.Combine(Naam, Adres);
+        //}
         #endregion
     }
 }

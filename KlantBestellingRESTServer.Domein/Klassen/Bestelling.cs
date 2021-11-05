@@ -20,6 +20,17 @@ namespace KlantBestellingRESTServer.Domein.Klassen
             ZetAantal(aantal);
             ZetKlant(klant);
         }
+        public Bestelling(int id, int aantal, Klant klant)
+        {
+            ZetId(id);
+            ZetAantal(aantal);
+            ZetKlant(klant);
+        }
+        public Bestelling(int aantal, Klant klant)
+        {
+            ZetAantal(aantal);
+            ZetKlant(klant);
+        }
         #endregion
 
         #region Methods

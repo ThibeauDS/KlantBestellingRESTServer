@@ -6,9 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KlantBestellingRESTServer.Data\KlantBestellingRESTServer.Data.csproj" />
     <ProjectReference Include="..\KlantBestellingRESTServer.Domein\KlantBestellingRESTServer.Domein.csproj" />
   </ItemGroup>
 

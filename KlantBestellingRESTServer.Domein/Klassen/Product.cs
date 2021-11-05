@@ -9,7 +9,7 @@ namespace KlantBestellingRESTServer.Domein.Klassen
     public class Product
     {
         #region Properties
-
+        public int MyProperty { get; private set; }
         #endregion
     }
 }

@@ -1,3 +1,6 @@
+using KlantBestellingRESTServer.Data.ADO;
+using KlantBestellingRESTServer.Domein.Beheerders;
+using KlantBestellingRESTServer.Domein.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,6 +20,8 @@ namespace KlantBestellingRESTServer
 {
     public class Startup
     {
+        private readonly string _connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=KlantBestellingenRESTServerDb;Integrated Security=True";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,6 +34,11 @@ namespace KlantBestellingRESTServer
         {
 
             services.AddControllers();
+            services.AddSingleton<IKlantRepository>(x => new KlantRepositoryADO(_connectionString));
+            services.AddSingleton<IBestellingRepository>(x => new BestellingRepositoryADO(_connectionString));
+            //services.AddSingleton<IProductRepository>(x => new Prod(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString));
+            services.AddSingleton<KlantBeheerder>();
+            services.AddSingleton<BestellingBeheerder>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KlantBestellingRESTServer", Version = "v1" });

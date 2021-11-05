@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KlantBestellingRESTServer.Domein.Klassen
+namespace KlantBestellingRESTServer.Domein.Beheerders
 {
-    internal class ProductBeheerder
+    public class ProductBeheerder
     {
     }
 }

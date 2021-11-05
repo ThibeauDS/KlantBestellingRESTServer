@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KlantBestellingRESTServer.Domein.Klassen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace KlantBestellingRESTServer.Domein.Interfaces
 {
     public interface IBestellingRepository
     {
+        IEnumerable<Bestelling> GeefBestellingenKlant(int id);
     }
 }
