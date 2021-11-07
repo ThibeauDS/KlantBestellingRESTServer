@@ -57,19 +57,6 @@ namespace KlantBestellingRESTServer.Domein.Klassen
             }
             Naam = naam;
         }
-
-        //TODO: Repository kent deze nog niet en moet een check doen of er geen dubbele is
-        //public override bool Equals(object obj)
-        //{
-        //    return obj is Klant klant &&
-        //           Naam == klant.Naam &&
-        //           Adres == klant.Adres;
-        //}
-
-        //public override int GetHashCode()
-        //{
-        //    return HashCode.Combine(Naam, Adres);
-        //}
         #endregion
     }
 }

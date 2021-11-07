@@ -9,19 +9,12 @@ CREATE TABLE [dbo].[Klant]
     [Adres] NVARCHAR(250) NOT NULL
 );
 GO
-CREATE TABLE [dbo].[Product]
-(
-    [Id] INT NOT NULL PRIMARY KEY IDENTITY (1,1),
-    [Naam] NVARCHAR(100) NOT NULL
-);
-GO
 CREATE TABLE [dbo].[Bestelling]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY (1,1), 
     [KlantId] INT NOT NULL, 
     [ProductId] INT NOT NULL, 
     [Aantal] INT NOT NULL,
-	CONSTRAINT [FK_Bestelling_Klant] FOREIGN KEY ([KlantId]) REFERENCES [dbo].[Klant] ([Id]),
-    CONSTRAINT [FK_Bestelling_Product] FOREIGN KEY ([ProductId]) REFERENCES [dbo].[Product] ([Id])
+	CONSTRAINT [FK_Bestelling_Klant] FOREIGN KEY ([KlantId]) REFERENCES [dbo].[Klant] ([Id])
 );
 GO

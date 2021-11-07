@@ -1,4 +1,5 @@
-﻿using KlantBestellingRESTServer.Domein.Exceptions;
+﻿using KlantBestellingRESTServer.Domein.Enums;
+using KlantBestellingRESTServer.Domein.Exceptions;
 using System;
 
 namespace KlantBestellingRESTServer.Domein.Klassen
@@ -13,16 +14,13 @@ namespace KlantBestellingRESTServer.Domein.Klassen
         #endregion
 
         #region Constructors
-        public Bestelling(int id, Product product, int aantal, Klant klant) : this(id, aantal, klant)
-        {
-            ZetProduct(product);
-        }
-        public Bestelling(int id, int aantal, Klant klant) : this (aantal, klant)
+        public Bestelling(int id, int product, int aantal, Klant klant) : this(product, aantal, klant)
         {
             ZetId(id);
         }
-        public Bestelling(int aantal, Klant klant)
+        public Bestelling(int product, int aantal, Klant klant)
         {
+            ZetProduct(product);
             ZetAantal(aantal);
             ZetKlant(klant);
         }
@@ -38,13 +36,13 @@ namespace KlantBestellingRESTServer.Domein.Klassen
             Id = id;
         }
 
-        public void ZetProduct(Product product)
+        public void ZetProduct(int product)
         {
-            if (product == null)
+            if (!Enum.IsDefined(typeof(Product), (Product)product))
             {
-                throw new BestellingException("Product is NULL.");
+                throw new BestellingException("Product bestaat niet.");
             }
-            Product = product;
+            Product = (Product)product;
         }
 
         public void ZetAantal(int aantal)

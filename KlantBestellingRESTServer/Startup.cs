@@ -36,7 +36,6 @@ namespace KlantBestellingRESTServer
             services.AddControllers();
             services.AddSingleton<IKlantRepository>(x => new KlantRepositoryADO(_connectionString));
             services.AddSingleton<IBestellingRepository>(x => new BestellingRepositoryADO(_connectionString));
-            //services.AddSingleton<IProductRepository>(x => new Prod(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString));
             services.AddSingleton<KlantBeheerder>();
             services.AddSingleton<BestellingBeheerder>();
             services.AddSwaggerGen(c =>

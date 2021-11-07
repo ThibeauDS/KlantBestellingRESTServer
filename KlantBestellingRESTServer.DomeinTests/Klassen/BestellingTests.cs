@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KlantBestellingRESTServer.Domein.Exceptions;
+using KlantBestellingRESTServer.Domein.Enums;
 
 namespace KlantBestellingRESTServer.Domein.Klassen.Tests
 {
@@ -13,7 +14,6 @@ namespace KlantBestellingRESTServer.Domein.Klassen.Tests
     {
         #region Properties
         private readonly Klant _klant;
-        private readonly Product _product;
         private readonly Bestelling _bestelling;
         #endregion
 
@@ -21,8 +21,7 @@ namespace KlantBestellingRESTServer.Domein.Klassen.Tests
         public BestellingTests()
         {
             _klant = new(1, "Thibeau De Smet", "Sleistraat 26A 9550 Herzele");
-            _product = new(1, "Duvel");
-            _bestelling = new(1, _product, 2, _klant);
+            _bestelling = new(1, 0, 2, _klant);
         }
         #endregion
 
@@ -34,8 +33,8 @@ namespace KlantBestellingRESTServer.Domein.Klassen.Tests
         }
 
         [Theory()]
-        [InlineData(null)]
-        public void ZetProductTest(Product product)
+        [InlineData(10)]
+        public void ZetProductTest(int product)
         {
             Assert.Throws<BestellingException>(() => _bestelling.ZetProduct(product));
         }

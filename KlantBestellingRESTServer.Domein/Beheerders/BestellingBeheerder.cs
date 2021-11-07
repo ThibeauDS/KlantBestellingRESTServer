@@ -34,6 +34,54 @@ namespace KlantBestellingRESTServer.Domein.Beheerders
                 throw new BestellingBeheerderException("GeefBestellingenKlant - error", ex);
             }
         }
+
+        public Bestelling BestellingWeergeven(int id)
+        {
+            try
+            {
+                return _repo.BestellingWeergeven(id);
+            }
+            catch (Exception ex)
+            {
+                throw new BestellingBeheerderException("BestellingWeergeven - error", ex);
+            }
+        }
+
+        public void BestellingVerwijderen(int bestellingId)
+        {
+            try
+            {
+                if (!_repo.BestaatBestelling(bestellingId))
+                {
+                    throw new BestellingBeheerderException("Bestelling bestaat niet.");
+                }
+                _repo.BestellingVerwijderen(bestellingId);
+            }
+            catch (Exception ex)
+            {
+                throw new BestellingBeheerderException("BestellingVerwijderen - error", ex);
+            }
+        }
+
+        public Bestelling BestellingToevoegen(Bestelling bestelling)
+        {
+            try
+            {
+                if (bestelling == null)
+                {
+                    throw new BestellingBeheerderException("Bestelling is NULL.");
+                }
+                if (_repo.BestaatBestelling(bestelling.Id))
+                {
+                    throw new BestellingBeheerderException("Bestelling bestaat al.");
+                }
+                return _repo.BestellingToevoegen(bestelling);
+            }
+            catch (Exception ex)
+            {
+                throw new BestellingBeheerderException("BestellingToevoegen - error", ex);
+            }
+        }
         #endregion
     }
 }

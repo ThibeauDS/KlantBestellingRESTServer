@@ -20,6 +20,19 @@ namespace KlantBestellingRESTServer.Mappers
                 throw new MapNaarDomeinException("MapNaarKlantDomein - error", ex);
             }
         }
+
+        public static Bestelling MapNaarBestellingDomein(BestellingRESTInputDTO bestellingRESTInputDTO, Klant klant)
+        {
+            try
+            {
+                Bestelling bestelling = new(bestellingRESTInputDTO.Product, bestellingRESTInputDTO.Aantal, klant);
+                return bestelling;
+            }
+            catch (Exception ex)
+            {
+                throw new MapNaarDomeinException("MapNaarBestellingDomein - error", ex);
+            }
+        }
         #endregion
     }
 }

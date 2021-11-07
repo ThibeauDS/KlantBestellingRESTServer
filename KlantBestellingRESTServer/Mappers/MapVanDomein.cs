@@ -25,6 +25,22 @@ namespace KlantBestellingRESTServer.Mappers
                 throw new MapVanDomeinException("MapVanKlantDomein - error", ex);
             }
         }
+
+        public static BestellingRESTOutputDTO MapVanBestellingDomein(string url, Bestelling bestelling)
+        {
+            try
+            {
+                string klantIdUrl = $"{url}/Klant/{bestelling.Klant.Id}";
+                string bestellingUrl = klantIdUrl + $"/Bestelling/{bestelling.Id}";
+                BestellingRESTOutputDTO bestellingRESTOutputDTO = new(bestellingUrl, klantIdUrl, bestelling.Product.ToString(), bestelling.Aantal);
+                return bestellingRESTOutputDTO;
+
+            }
+            catch (Exception ex)
+            {
+                throw new MapVanDomeinException("MapVanBestellingDomein - error", ex);
+            }
+        }
         #endregion
     }
 }
