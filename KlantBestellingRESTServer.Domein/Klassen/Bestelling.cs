@@ -13,18 +13,13 @@ namespace KlantBestellingRESTServer.Domein.Klassen
         #endregion
 
         #region Constructors
-        public Bestelling(int id, Product product, int aantal, Klant klant)
+        public Bestelling(int id, Product product, int aantal, Klant klant) : this(id, aantal, klant)
         {
-            ZetId(id);
             ZetProduct(product);
-            ZetAantal(aantal);
-            ZetKlant(klant);
         }
-        public Bestelling(int id, int aantal, Klant klant)
+        public Bestelling(int id, int aantal, Klant klant) : this (aantal, klant)
         {
             ZetId(id);
-            ZetAantal(aantal);
-            ZetKlant(klant);
         }
         public Bestelling(int aantal, Klant klant)
         {
@@ -36,29 +31,37 @@ namespace KlantBestellingRESTServer.Domein.Klassen
         #region Methods
         public void ZetId(int id)
         {
-            if (id < 0)
+            if (id <= 0)
             {
-                throw new BestellingException("Het ID is ongeldig. Het moet 0 of meer zijn.");
+                throw new BestellingException("Het ID is ongeldig. Het moet 1 of meer zijn.");
             }
             Id = id;
         }
 
         public void ZetProduct(Product product)
         {
+            if (product == null)
+            {
+                throw new BestellingException("Product is NULL.");
+            }
             Product = product;
         }
 
         public void ZetAantal(int aantal)
         {
-            if (aantal < 1)
+            if (aantal <= 1)
             {
-                throw new BestellingException("Het aantal moet groter zijn dan 0.");
+                throw new BestellingException("Het aantal moet steeds groter zijn dan 1.");
             }
             Aantal = aantal;
         }
 
         public void ZetKlant(Klant klant)
         {
+            if (klant == null)
+            {
+                throw new BestellingException("Klant is NULL.");
+            }
             Klant = klant;
         }
         #endregion

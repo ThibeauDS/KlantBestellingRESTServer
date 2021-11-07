@@ -16,11 +16,9 @@ namespace KlantBestellingRESTServer.Domein.Klassen
         #endregion
 
         #region Constructors
-        public Klant(int id, string naam, string adres)
+        public Klant(int id, string naam, string adres) : this(naam, adres)
         {
             ZetId(id);
-            ZetNaam(naam);
-            ZetAdres(adres);
         }
         public Klant(string naam, string adres)
         {

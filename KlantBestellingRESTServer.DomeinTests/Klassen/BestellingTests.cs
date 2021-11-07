@@ -9,16 +9,20 @@ using KlantBestellingRESTServer.Domein.Exceptions;
 
 namespace KlantBestellingRESTServer.Domein.Klassen.Tests
 {
-    public class KlantTests
+    public class BestellingTests
     {
         #region Properties
         private readonly Klant _klant;
+        private readonly Product _product;
+        private readonly Bestelling _bestelling;
         #endregion
 
         #region Constructors
-        public KlantTests()
+        public BestellingTests()
         {
             _klant = new(1, "Thibeau De Smet", "Sleistraat 26A 9550 Herzele");
+            _product = new(1, "Duvel");
+            _bestelling = new(1, _product, 2, _klant);
         }
         #endregion
 
@@ -26,35 +30,28 @@ namespace KlantBestellingRESTServer.Domein.Klassen.Tests
         [InlineData(0)]
         public void ZetIdTest(int id)
         {
-            Assert.Throws<KlantException>(() => _klant.ZetId(id));
+            Assert.Throws<BestellingException>(() => _bestelling.ZetId(id));
         }
 
         [Theory()]
         [InlineData(null)]
-        public void ZetAdresTest(string adres)
+        public void ZetProductTest(Product product)
         {
-            Assert.Throws<KlantException>(() => _klant.ZetAdres(adres));
+            Assert.Throws<BestellingException>(() => _bestelling.ZetProduct(product));
         }
 
         [Theory()]
-        [InlineData("")]
-        public void ZetAdresTest2(string adres)
+        [InlineData(1)]
+        public void ZetAantalTest(int aantal)
         {
-            Assert.Throws<KlantException>(() => _klant.ZetAdres(adres));
-        }
-
-        [Theory()]
-        [InlineData("0123456")]
-        public void ZetAdresTest3(string adres)
-        {
-            Assert.Throws<KlantException>(() => _klant.ZetAdres(adres));
+            Assert.Throws<BestellingException>(() => _bestelling.ZetAantal(aantal));
         }
 
         [Theory()]
         [InlineData(null)]
-        public void ZetNaamTest(string naam)
+        public void ZetKlantTest(Klant klant)
         {
-            Assert.Throws<KlantException>(() => _klant.ZetNaam(naam));
+            Assert.Throws<BestellingException>(() => _bestelling.ZetKlant(klant));
         }
     }
 }
