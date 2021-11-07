@@ -1,9 +1,5 @@
 ﻿using KlantBestellingRESTServer.Domein.Klassen;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KlantBestellingRESTServer.Domein.Interfaces
 {
@@ -14,5 +10,7 @@ namespace KlantBestellingRESTServer.Domein.Interfaces
         bool BestaatBestelling(int bestellingId);
         void BestellingVerwijderen(int bestellingId);
         Bestelling BestellingToevoegen(Bestelling bestelling);
+        void BestellingUpdaten(Bestelling bestelling);
+        bool HeeftBestellingenKlant(int id);
     }
 }

@@ -3,9 +3,6 @@ using KlantBestellingRESTServer.Domein.Interfaces;
 using KlantBestellingRESTServer.Domein.Klassen;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KlantBestellingRESTServer.Domein.Beheerders
 {
@@ -81,6 +78,49 @@ namespace KlantBestellingRESTServer.Domein.Beheerders
             {
                 throw new BestellingBeheerderException("BestellingToevoegen - error", ex);
             }
+        }
+
+        public bool HeeftBestellingenKlant(int id)
+        {
+            try
+            {
+                return _repo.HeeftBestellingenKlant(id);
+            }
+            catch (Exception ex)
+            {
+                throw new BestellingBeheerderException("HeeftBestellingenKlant - error", ex);
+            }
+        }
+
+        public bool BestaatBestelling(int id)
+        {
+            try
+            {
+                return _repo.BestaatBestelling(id);
+            }
+            catch (Exception ex)
+            {
+                throw new BestellingBeheerderException("Bestelling bestaat niet.", ex);
+            }
+        }
+
+        public Bestelling BestellingUpdaten(Bestelling bestelling)
+        {
+            if (bestelling == null)
+            {
+                throw new BestellingBeheerderException("Bestelling is null.");
+            }
+            if (!_repo.BestaatBestelling(bestelling.Id))
+            {
+                throw new BestellingBeheerderException("Bestelling bestaat niet.");
+            }
+            Bestelling bestellingDb = BestellingWeergeven(bestelling.Id);
+            if (bestellingDb == bestelling)
+            {
+                throw new BestellingBeheerderException("Er zijn geen verschillen met het origineel.");
+            }
+            _repo.BestellingUpdaten(bestelling);
+            return bestelling;
         }
         #endregion
     }

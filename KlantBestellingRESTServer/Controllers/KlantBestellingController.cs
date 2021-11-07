@@ -3,7 +3,6 @@ using KlantBestellingRESTServer.Domein.Klassen;
 using KlantBestellingRESTServer.Klassen.Input;
 using KlantBestellingRESTServer.Klassen.Output;
 using KlantBestellingRESTServer.Mappers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -62,6 +61,10 @@ namespace KlantBestellingRESTServer.Controllers
         {
             try
             {
+                if (_bestellingBeheerder.HeeftBestellingenKlant(id))
+                {
+                    return BadRequest();
+                }
                 _klantBeheerder.KlantVerwijderen(id);
                 return NoContent();
             }
@@ -157,7 +160,19 @@ namespace KlantBestellingRESTServer.Controllers
         {
             try
             {
-                //TODO: implementatie van PUT bestelling
+                if (!_bestellingBeheerder.BestaatBestelling(id) || bestellingRESTInputDTO == null)
+                {
+                    return BadRequest();
+                }
+                Klant klant = _klantBeheerder.KlantWeergeven(id);
+                if (klant.Id != bestellingRESTInputDTO.KlantId)
+                {
+                    return BadRequest("KlantId komt niet overeen met KlantId.");
+                }
+                Bestelling bestelling = MapNaarDomein.MapNaarBestellingDomein(bestellingRESTInputDTO, klant);
+                bestelling.ZetId(bestellingId);
+                Bestelling bestellingDb = _bestellingBeheerder.BestellingUpdaten(bestelling);
+                return CreatedAtAction(nameof(GetBestelling), new { id = bestellingDb.Klant.Id, bestellingId = bestellingDb.Id }, MapVanDomein.MapVanBestellingDomein(url, bestellingDb));
             }
             catch (Exception ex)
             {

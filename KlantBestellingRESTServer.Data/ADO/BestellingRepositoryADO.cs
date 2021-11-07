@@ -1,14 +1,10 @@
 ﻿using KlantBestellingRESTServer.Data.Exceptions;
-using KlantBestellingRESTServer.Domein.Enums;
 using KlantBestellingRESTServer.Domein.Interfaces;
 using KlantBestellingRESTServer.Domein.Klassen;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KlantBestellingRESTServer.Data.ADO
 {
@@ -166,6 +162,58 @@ namespace KlantBestellingRESTServer.Data.ADO
                 BestellingRepositoryADOException bestellingRepositoryADOException = new("BestellingToevoegen niet gelukt", ex);
                 bestellingRepositoryADOException.Data.Add("Bestelling", bestelling);
                 throw bestellingRepositoryADOException;
+            }
+        }
+
+        public void BestellingUpdaten(Bestelling bestelling)
+        {
+            SqlConnection connection = GetConnection();
+            string sql = "UPDATE [dbo].[Bestelling] SET ProductId = @ProductId, Aantal = @Aantal, KlantId = @KlantId WHERE Id = @Id";
+            using SqlCommand command = new(sql, connection);
+            try
+            {
+                connection.Open();
+                command.Parameters.Add("@ProductId", SqlDbType.Int);
+                command.Parameters.Add("@Aantal", SqlDbType.Int);
+                command.Parameters.Add("@KlantId", SqlDbType.Int);
+                command.Parameters.Add("@Id", SqlDbType.Int);
+                command.Parameters["@ProductId"].Value = (int)bestelling.Product;
+                command.Parameters["@Aantal"].Value = bestelling.Aantal;
+                command.Parameters["@KlantId"].Value = bestelling.Klant.Id;
+                command.Parameters["@Id"].Value = bestelling.Id;
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                BestellingRepositoryADOException bestellingRepositoryADOException = new("BestellingUpdaten niet gelukt", ex);
+                bestellingRepositoryADOException.Data.Add("Bestelling", bestelling);
+                throw bestellingRepositoryADOException;
+            }
+        }
+
+        public bool HeeftBestellingenKlant(int id)
+        {
+            SqlConnection connection = GetConnection();
+            string sql = "SELECT COUNT(*) FROM [dbo].[Bestelling] WHERE KlantId = @Id";
+            using SqlCommand command = new(sql, connection);
+            try
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Id", id);
+                int n = (int)command.ExecuteScalar();
+                if (n > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new BestellingRepositoryADOException("HeeftBestellingenKlant niet gelukt", ex);
+            }
+            finally
+            {
+                connection.Close();
             }
         }
         #endregion

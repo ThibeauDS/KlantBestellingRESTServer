@@ -1,6 +1,4 @@
-﻿using KlantBestellingRESTServer.Domein.Enums;
-
-namespace KlantBestellingRESTServer.Klassen.Input
+﻿namespace KlantBestellingRESTServer.Klassen.Input
 {
     public class BestellingRESTInputDTO
     {

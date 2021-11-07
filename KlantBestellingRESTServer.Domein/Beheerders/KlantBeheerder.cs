@@ -2,10 +2,6 @@
 using KlantBestellingRESTServer.Domein.Interfaces;
 using KlantBestellingRESTServer.Domein.Klassen;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KlantBestellingRESTServer.Domein.Beheerders
 {
@@ -74,14 +70,11 @@ namespace KlantBestellingRESTServer.Domein.Beheerders
 
         public Klant KlantWeergeven(int id)
         {
-            try
+            if (!_repo.BestaatKlant(id))
             {
-                return _repo.KlantWeergeven(id);
+                throw new KlantBeheerderException("Klant bestaat niet.");
             }
-            catch (Exception ex)
-            {
-                throw new KlantBeheerderException("Klant bestaat niet.", ex);
-            }
+            return _repo.KlantWeergeven(id);
         }
 
         public bool BestaatKlant(int id)
