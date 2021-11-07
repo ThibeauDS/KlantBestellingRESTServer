@@ -35,8 +35,7 @@ namespace KlantBestellingRESTServer.Domein.Beheerders
                 {
                     throw new KlantBeheerderException("Klant bestaat al.");
                 }
-                _repo.KlantToevoegen(klant);
-                return klant;
+                return _repo.KlantToevoegen(klant);
             }
             catch (Exception ex)
             {
@@ -45,22 +44,32 @@ namespace KlantBestellingRESTServer.Domein.Beheerders
 
         }
 
-        public void KlantVerwijderen(Klant klant)
+        public void KlantVerwijderen(int id)
         {
-            if (!_repo.BestaatKlant(klant.Id))
+            if (!_repo.BestaatKlant(id))
             {
                 throw new KlantBeheerderException("Klant bestaat niet.");
             }
-            _repo.KlantVerwijderen(klant);
+            _repo.KlantVerwijderen(id);
         }
 
-        public void KlantUpdaten(Klant klant)
+        public Klant KlantUpdaten(Klant klant)
         {
+            if (klant == null)
+            {
+                throw new KlantBeheerderException("Klant is null.");
+            }
             if (!_repo.BestaatKlant(klant.Id))
             {
                 throw new KlantBeheerderException("Klant bestaat niet.");
             }
+            Klant klantDb = KlantWeergeven(klant.Id);
+            if (klantDb == klant)
+            {
+                throw new KlantBeheerderException("Er zijn geen verschillen met het origineel.");
+            }
             _repo.KlantUpdaten(klant);
+            return klant;
         }
 
         public Klant KlantWeergeven(int id)
@@ -68,6 +77,18 @@ namespace KlantBestellingRESTServer.Domein.Beheerders
             try
             {
                 return _repo.KlantWeergeven(id);
+            }
+            catch (Exception ex)
+            {
+                throw new KlantBeheerderException("Klant bestaat niet.", ex);
+            }
+        }
+
+        public bool BestaatKlant(int id)
+        {
+            try
+            {
+                return _repo.BestaatKlant(id);
             }
             catch (Exception ex)
             {

@@ -55,10 +55,10 @@ namespace KlantBestellingRESTServer.Data.ADO
             }
         }
 
-        public void KlantToevoegen(Klant klant)
+        public Klant KlantToevoegen(Klant klant)
         {
             SqlConnection connection = GetConnection();
-            string sql = "INSERT INTO [dbo].[Klant] (Naam, Adres) VALUES (@Naam, @Adres)";
+            string sql = "INSERT INTO [dbo].[Klant] (Naam, Adres) VALUES (@Naam, @Adres) SELECT SCOPE_IDENTITY();";
             using SqlCommand command = new(sql, connection);
             try
             {
@@ -67,7 +67,8 @@ namespace KlantBestellingRESTServer.Data.ADO
                 command.Parameters.Add("@Adres", SqlDbType.NVarChar);
                 command.Parameters["@Naam"].Value = klant.Naam;
                 command.Parameters["@Adres"].Value = klant.Adres;
-                command.ExecuteNonQuery();
+                int id = Decimal.ToInt32((decimal)command.ExecuteScalar());
+                return new Klant(id, klant.Naam, klant.Adres);
             }
             catch (Exception ex)
             {
@@ -79,17 +80,68 @@ namespace KlantBestellingRESTServer.Data.ADO
 
         public void KlantUpdaten(Klant klant)
         {
-            throw new NotImplementedException();
+            SqlConnection connection = GetConnection();
+            string sql = "UPDATE [dbo].[Klant] SET Naam = @Naam, Adres = @Adres WHERE Id = @Id";
+            using SqlCommand command = new(sql, connection);
+            try
+            {
+                connection.Open();
+                command.Parameters.Add("@Naam", SqlDbType.NVarChar);
+                command.Parameters.Add("@Adres", SqlDbType.NVarChar);
+                command.Parameters.Add("@Id", SqlDbType.Int);
+                command.Parameters["@Naam"].Value = klant.Naam;
+                command.Parameters["@Adres"].Value = klant.Adres;
+                command.Parameters["@Id"].Value = klant.Id;
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                KlantRepositoryADOException klantRepositoryADOException = new("KlantUpdaten niet gelukt", ex);
+                klantRepositoryADOException.Data.Add("Klant", klant);
+                throw klantRepositoryADOException;
+            }
         }
 
-        public void KlantVerwijderen(Klant klant)
+        public void KlantVerwijderen(int id)
         {
-            throw new NotImplementedException();
+            SqlConnection connection = GetConnection();
+            string sql = "DELETE FROM [dbo].[Klant] WHERE Id = @Id";
+            using SqlCommand command = new(sql, connection);
+            try
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Id", id);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                KlantRepositoryADOException klantRepositoryADOException = new("KlantVerwijderen niet gelukt", ex);
+                klantRepositoryADOException.Data.Add("Klant id", id);
+                throw klantRepositoryADOException;
+            }
         }
 
         public Klant KlantWeergeven(int id)
         {
-            throw new NotImplementedException();
+            SqlConnection connection = GetConnection();
+            string sql = "SELECT * FROM [dbo].[Klant] WHERE Id = @Id";
+            using SqlCommand command = new(sql, connection);
+            try
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Id", id);
+                IDataReader reader = command.ExecuteReader();
+                reader.Read();
+                Klant klant = new((int)reader["Id"], (string)reader["Naam"], (string)reader["Adres"]);
+                reader.Close();
+                return klant;
+            }
+            catch (Exception ex)
+            {
+                KlantRepositoryADOException klantRepositoryADOException = new("KlantWeergeven niet gelukt", ex);
+                klantRepositoryADOException.Data.Add("Klant id", id);
+                throw klantRepositoryADOException;
+            }
         }
         #endregion
     }

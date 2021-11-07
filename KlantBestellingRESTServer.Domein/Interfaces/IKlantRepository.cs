@@ -10,8 +10,8 @@ namespace KlantBestellingRESTServer.Domein.Interfaces
     public interface IKlantRepository
     {
         bool BestaatKlant(int id);
-        void KlantToevoegen(Klant klant);
-        void KlantVerwijderen(Klant klant);
+        Klant KlantToevoegen(Klant klant);
+        void KlantVerwijderen(int id);
         void KlantUpdaten(Klant klant);
         Klant KlantWeergeven(int id);
         //bool CheckHashCode(HashCode code);

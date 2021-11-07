@@ -21,3 +21,4 @@ C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTSer
 C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\KlantBestellingRESTServer.Domein.dll
 C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\ref\KlantBestellingRESTServer.Domein.dll
 C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\KlantBestellingRESTServer.Domein.pdb
+C:\Users\thibe\Documents\GitHub\KlantBestellingRESTServer\KlantBestellingRESTServer.Domein\obj\Debug\net5.0\KlantBestellingRESTServer.Domein.csproj.AssemblyReference.cache
