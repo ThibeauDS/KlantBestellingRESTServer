@@ -31,7 +31,7 @@ namespace KlantBestellingRESTServer.Data.ADO
         public IEnumerable<Bestelling> GeefBestellingenKlant(int id)
         {
             SqlConnection connection = GetConnection();
-            string sql = "SELECT * FROM [dbo].[Klant] k INNER JOIN [dbo].[Bestelling] b ON k.Id = b.KlantId WHERE k.Id = @Id";
+            string sql = "SELECT k.*, b.Id AS BestellingId, b.KlantId, b.ProductId, b.Aantal FROM [dbo].[Klant] k INNER JOIN [dbo].[Bestelling] b ON k.Id = b.KlantId WHERE k.Id = @Id";
             using SqlCommand command = new(sql, connection);
             try
             {
@@ -46,7 +46,7 @@ namespace KlantBestellingRESTServer.Data.ADO
                     {
                         klant = new((int)reader["Id"], (string)reader["Naam"], (string)reader["Adres"]);
                     }
-                    Bestelling bestelling = new((int)reader["Id"], (int)reader["ProductId"], (int)reader["Aantal"], klant);
+                    Bestelling bestelling = new((int)reader["BestellingId"], (int)reader["ProductId"], (int)reader["Aantal"], klant);
                     bestellingList.Add(bestelling);
                 }
                 reader.Close();
@@ -62,15 +62,17 @@ namespace KlantBestellingRESTServer.Data.ADO
             }
         }
 
-        public Bestelling BestellingWeergeven(int id)
+        public Bestelling BestellingWeergeven(int klantId, int id)
         {
             SqlConnection connection = GetConnection();
-            string sql = "SELECT * FROM [dbo].[Klant] k INNER JOIN [dbo].[Bestelling] b ON k.Id = b.KlantId WHERE k.Id = @Id";
+            string sql = "SELECT k.*, b.Id AS BestellingId, b.KlantId, b.ProductId, b.Aantal FROM [dbo].[Klant] k INNER JOIN [dbo].[Bestelling] b ON k.Id = b.KlantId WHERE k.Id = @KlantId AND b.Id = @Id";
             Klant klant = null;
             using SqlCommand command = new(sql, connection);
             try
             {
                 connection.Open();
+                command.Parameters.Add("@KlantId", SqlDbType.Int);
+                command.Parameters["@KlantId"].Value = klantId;
                 command.Parameters.Add("@Id", SqlDbType.Int);
                 command.Parameters["@Id"].Value = id;
                 IDataReader reader = command.ExecuteReader();
@@ -79,7 +81,7 @@ namespace KlantBestellingRESTServer.Data.ADO
                 {
                     klant = new((int)reader["Id"], (string)reader["Naam"], (string)reader["Adres"]);
                 }
-                Bestelling bestelling = new((int)reader["Id"], (int)reader["ProductId"], (int)reader["Aantal"], klant);
+                Bestelling bestelling = new((int)reader["BestellingId"], (int)reader["ProductId"], (int)reader["Aantal"], klant);
                 reader.Close();
                 return bestelling;
             }
@@ -145,9 +147,11 @@ namespace KlantBestellingRESTServer.Data.ADO
             SqlConnection connection = GetConnection();
             string sql = "INSERT INTO [dbo].[Bestelling] (ProductId, Aantal, KlantId) VALUES (@ProductId, @Aantal, @KlantId) SELECT SCOPE_IDENTITY();";
             using SqlCommand command = new(sql, connection);
+            connection.Open();
+            SqlTransaction sqlTransaction = connection.BeginTransaction();
             try
             {
-                connection.Open();
+                command.Transaction = sqlTransaction;
                 command.Parameters.Add("@ProductId", SqlDbType.Int);
                 command.Parameters.Add("@Aantal", SqlDbType.Int);
                 command.Parameters.Add("@KlantId", SqlDbType.Int);
@@ -155,10 +159,12 @@ namespace KlantBestellingRESTServer.Data.ADO
                 command.Parameters["@Aantal"].Value = bestelling.Aantal;
                 command.Parameters["@KlantId"].Value = bestelling.Klant.Id;
                 int id = Decimal.ToInt32((decimal)command.ExecuteScalar());
+                sqlTransaction.Commit();
                 return new Bestelling(id, (int)bestelling.Product, bestelling.Aantal, bestelling.Klant);
             }
             catch (Exception ex)
             {
+                sqlTransaction.Rollback();
                 BestellingRepositoryADOException bestellingRepositoryADOException = new("BestellingToevoegen niet gelukt", ex);
                 bestellingRepositoryADOException.Data.Add("Bestelling", bestelling);
                 throw bestellingRepositoryADOException;
@@ -170,9 +176,11 @@ namespace KlantBestellingRESTServer.Data.ADO
             SqlConnection connection = GetConnection();
             string sql = "UPDATE [dbo].[Bestelling] SET ProductId = @ProductId, Aantal = @Aantal, KlantId = @KlantId WHERE Id = @Id";
             using SqlCommand command = new(sql, connection);
+            connection.Open();
+            SqlTransaction sqlTransaction = connection.BeginTransaction();
             try
             {
-                connection.Open();
+                command.Transaction = sqlTransaction;
                 command.Parameters.Add("@ProductId", SqlDbType.Int);
                 command.Parameters.Add("@Aantal", SqlDbType.Int);
                 command.Parameters.Add("@KlantId", SqlDbType.Int);
@@ -182,9 +190,11 @@ namespace KlantBestellingRESTServer.Data.ADO
                 command.Parameters["@KlantId"].Value = bestelling.Klant.Id;
                 command.Parameters["@Id"].Value = bestelling.Id;
                 command.ExecuteNonQuery();
+                sqlTransaction.Commit();
             }
             catch (Exception ex)
             {
+                sqlTransaction.Rollback();
                 BestellingRepositoryADOException bestellingRepositoryADOException = new("BestellingUpdaten niet gelukt", ex);
                 bestellingRepositoryADOException.Data.Add("Bestelling", bestelling);
                 throw bestellingRepositoryADOException;

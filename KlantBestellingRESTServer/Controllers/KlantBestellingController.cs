@@ -102,7 +102,7 @@ namespace KlantBestellingRESTServer.Controllers
         {
             try
             {
-                Bestelling bestelling = _bestellingBeheerder.BestellingWeergeven(bestellingId);
+                Bestelling bestelling = _bestellingBeheerder.BestellingWeergeven(id, bestellingId);
                 if (bestelling.Klant.Id != id)
                 {
                     return BadRequest("KlantId komt niet overeen met de BestellingsId.");
@@ -171,7 +171,7 @@ namespace KlantBestellingRESTServer.Controllers
                 }
                 Bestelling bestelling = MapNaarDomein.MapNaarBestellingDomein(bestellingRESTInputDTO, klant);
                 bestelling.ZetId(bestellingId);
-                Bestelling bestellingDb = _bestellingBeheerder.BestellingUpdaten(bestelling);
+                Bestelling bestellingDb = _bestellingBeheerder.BestellingUpdaten(id, bestelling);
                 return CreatedAtAction(nameof(GetBestelling), new { id = bestellingDb.Klant.Id, bestellingId = bestellingDb.Id }, MapVanDomein.MapVanBestellingDomein(url, bestellingDb));
             }
             catch (Exception ex)

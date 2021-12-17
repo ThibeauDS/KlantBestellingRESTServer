@@ -32,11 +32,11 @@ namespace KlantBestellingRESTServer.Domein.Beheerders
             }
         }
 
-        public Bestelling BestellingWeergeven(int id)
+        public Bestelling BestellingWeergeven(int klantId, int id)
         {
             try
             {
-                return _repo.BestellingWeergeven(id);
+                return _repo.BestellingWeergeven(klantId, id);
             }
             catch (Exception ex)
             {
@@ -104,7 +104,7 @@ namespace KlantBestellingRESTServer.Domein.Beheerders
             }
         }
 
-        public Bestelling BestellingUpdaten(Bestelling bestelling)
+        public Bestelling BestellingUpdaten(int id, Bestelling bestelling)
         {
             if (bestelling == null)
             {
@@ -114,7 +114,7 @@ namespace KlantBestellingRESTServer.Domein.Beheerders
             {
                 throw new BestellingBeheerderException("Bestelling bestaat niet.");
             }
-            Bestelling bestellingDb = BestellingWeergeven(bestelling.Id);
+            Bestelling bestellingDb = BestellingWeergeven(id, bestelling.Id);
             if (bestellingDb == bestelling)
             {
                 throw new BestellingBeheerderException("Er zijn geen verschillen met het origineel.");

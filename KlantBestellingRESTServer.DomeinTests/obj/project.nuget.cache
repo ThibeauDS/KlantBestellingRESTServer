@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qHR46Bd1b/Eb1cnMOxB7WdGYTv0JMYXmFbPwPmdz5BoT/+/tGCJX6BsvI3IKKtgO+HHy5Zk2MeU5AcmKc7BU7A==",
+  "dgSpecHash": "B1VZHwOZo+9hwLUN8WbxsjFMLgfy0xI871SeAn2Bp27kQynDC46xFSjtNM3g8yPHd12mIYHR5kmEFSIB6dn2jQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\thibe\\Documents\\GitHub\\KlantBestellingRESTServer\\KlantBestellingRESTServer.DomeinTests\\KlantBestellingRESTServer.DomeinTests.csproj",
   "expectedPackageFiles": [

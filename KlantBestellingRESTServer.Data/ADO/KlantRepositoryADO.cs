@@ -60,18 +60,22 @@ namespace KlantBestellingRESTServer.Data.ADO
             SqlConnection connection = GetConnection();
             string sql = "INSERT INTO [dbo].[Klant] (Naam, Adres) VALUES (@Naam, @Adres) SELECT SCOPE_IDENTITY();";
             using SqlCommand command = new(sql, connection);
+            connection.Open();
+            SqlTransaction sqlTransaction = connection.BeginTransaction();
             try
             {
-                connection.Open();
+                command.Transaction = sqlTransaction;
                 command.Parameters.Add("@Naam", SqlDbType.NVarChar);
                 command.Parameters.Add("@Adres", SqlDbType.NVarChar);
                 command.Parameters["@Naam"].Value = klant.Naam;
                 command.Parameters["@Adres"].Value = klant.Adres;
                 int id = Decimal.ToInt32((decimal)command.ExecuteScalar());
+                sqlTransaction.Commit();
                 return new Klant(id, klant.Naam, klant.Adres);
             }
             catch (Exception ex)
             {
+                sqlTransaction.Rollback();
                 KlantRepositoryADOException klantRepositoryADOException = new("KlantToevoegen niet gelukt", ex);
                 klantRepositoryADOException.Data.Add("Klant", klant);
                 throw klantRepositoryADOException;
@@ -83,9 +87,10 @@ namespace KlantBestellingRESTServer.Data.ADO
             SqlConnection connection = GetConnection();
             string sql = "UPDATE [dbo].[Klant] SET Naam = @Naam, Adres = @Adres WHERE Id = @Id";
             using SqlCommand command = new(sql, connection);
+            connection.Open();
+            SqlTransaction sqlTransaction = connection.BeginTransaction();
             try
             {
-                connection.Open();
                 command.Parameters.Add("@Naam", SqlDbType.NVarChar);
                 command.Parameters.Add("@Adres", SqlDbType.NVarChar);
                 command.Parameters.Add("@Id", SqlDbType.Int);
@@ -93,9 +98,11 @@ namespace KlantBestellingRESTServer.Data.ADO
                 command.Parameters["@Adres"].Value = klant.Adres;
                 command.Parameters["@Id"].Value = klant.Id;
                 command.ExecuteNonQuery();
+                sqlTransaction.Commit();
             }
             catch (Exception ex)
             {
+                sqlTransaction.Rollback();
                 KlantRepositoryADOException klantRepositoryADOException = new("KlantUpdaten niet gelukt", ex);
                 klantRepositoryADOException.Data.Add("Klant", klant);
                 throw klantRepositoryADOException;
