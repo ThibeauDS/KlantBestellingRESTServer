@@ -91,6 +91,7 @@ namespace KlantBestellingRESTServer.Data.ADO
             SqlTransaction sqlTransaction = connection.BeginTransaction();
             try
             {
+                command.Transaction= sqlTransaction;
                 command.Parameters.Add("@Naam", SqlDbType.NVarChar);
                 command.Parameters.Add("@Adres", SqlDbType.NVarChar);
                 command.Parameters.Add("@Id", SqlDbType.Int);
